@@ -39,6 +39,8 @@ public class A_RainWaterTrap {
 
 		int[] A = { 0, 1, 0, 2 };
 		
+		
+		
 		System.out.println(trap(A));
 		
 	}

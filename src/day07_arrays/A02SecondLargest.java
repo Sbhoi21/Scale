@@ -40,12 +40,13 @@ public class A02SecondLargest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		int[] A = { 2, 1, 2 };
 		System.out.println(solve(A));
-		
+
 	}
 
+	// O(nlogn)
 	public static int solve(int[] A) {
 		int n = A.length;
 
@@ -60,6 +61,36 @@ public class A02SecondLargest {
 		}
 		return -1;
 
+	}
+
+	//O(n)
+	public static int solve1(int[] A) {
+		if (A == null || A.length < 2) {
+			return -1;
+		}
+		// Initialize largest with the smallest possible integer value
+		// Initialize second largest with the smallest possible integer value
+		int largest = Integer.MIN_VALUE;
+		int secondLargest = Integer.MIN_VALUE;
+
+		// Iterate through the array to find the largest and second largest elements
+		for (int num : A) {
+			// If the current element is greater than the largest found so far
+			if (num > largest) {
+				// Update second largest to be the previous largest
+				// Update largest to be the current element
+				secondLargest = largest;
+				largest = num;
+			}
+			// If the current element is between second-largest and largest
+			else if (num > secondLargest && num != largest) {
+				secondLargest = num; // Update second largest to be the current element
+			}
+		}
+
+		// If second largest is still Integer.MIN_VALUE, it means no valid second-
+		// largest was found
+		return (secondLargest == Integer.MIN_VALUE) ? -1 : secondLargest;
 	}
 
 }
